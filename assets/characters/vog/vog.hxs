@@ -1,0 +1,15 @@
+function loadAnimations() {
+	character.frames = Paths.getSparrowAtlas('Vog');
+	character.animation.addByPrefix('idle', 'idle', 24);
+
+	character.animation.addByPrefix('singLEFT', 'left', 24, false);
+	character.animation.addByPrefix('singDOWN', 'down', 24, false);
+	character.animation.addByPrefix('singUP', 'up', 24, false);
+	character.animation.addByPrefix('singRIGHT', 'right', 24, false);
+
+	character.addOffset('idle', 180, -100);
+	character.addOffset('singLEFT', 191, -30);
+	character.addOffset('singDOWN', 210, -90);
+	character.addOffset('singUP', 174, -30);
+	character.addOffset('singRIGHT', 120, -83);
+}
