@@ -31,7 +31,6 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 
 	var optionShit:Array<String> = ['story mode', 'freeplay', 'options'];
-	var canSnap:Array<Float> = [];
 
 	// the create 'state'
 	override function create()
@@ -88,39 +87,20 @@ class MainMenuState extends MusicBeatState
 		// loop through the menu options
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite(0, 80 + (i * 200));
+			var menuItem:FlxSprite = new FlxSprite(50, 80 + (i * 200));
 			menuItem.frames = tex;
 			// add the animations in a cool way (real
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
-			canSnap[i] = -1;
-			// set the id
 			menuItem.ID = i;
-			// menuItem.alpha = 0;
+			
+			menuItem.angle = -10;
 
-			// placements
-			menuItem.screenCenter(X);
-			// if the id is divisible by 2
-			if (menuItem.ID % 2 == 0)
-				menuItem.x += 1000;
-			else
-				menuItem.x -= 1000;
-
-			// actually add the item
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = true;
 			menuItem.updateHitbox();
-
-			/*
-				FlxTween.tween(menuItem, {alpha: 1, x: ((FlxG.width / 2) - (menuItem.width / 2))}, 0.35, {
-					ease: FlxEase.smootherStepInOut,
-					onComplete: function(tween:FlxTween)
-					{
-						canSnap[i] = 0;
-					}
-			});*/
 		}
 
 		// set the camera to actually follow the camera object that was created before
@@ -225,11 +205,6 @@ class MainMenuState extends MusicBeatState
 			updateSelection();
 
 		super.update(elapsed);
-
-		menuItems.forEach(function(menuItem:FlxSprite)
-		{
-			menuItem.screenCenter(X);
-		});
 	}
 
 	var lastCurSelected:Int = 0;
@@ -240,6 +215,7 @@ class MainMenuState extends MusicBeatState
 		menuItems.forEach(function(spr:FlxSprite)
 		{
 			spr.animation.play('idle');
+			spr.scale.set(0.6, 0.6);
 			spr.updateHitbox();
 		});
 

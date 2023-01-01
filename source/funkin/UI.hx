@@ -184,7 +184,7 @@ class UI extends FlxSpriteGroup
 		if (displayAccuracy)
 		{
 			scoreBar.text += divider + 'Accuracy: ' + Std.string(Math.floor(Timings.getAccuracy() * 100) / 100) + '%' + ranking;
-			scoreBar.text += divider + 'Combo Breaks: ' + Std.string(PlayState.misses);
+			scoreBar.text += divider + 'Breaks: ' + Std.string(PlayState.misses);
 		}
 		scoreBar.text += '\n';
 		scoreBar.x = Math.floor((FlxG.width / 2) - (scoreBar.width / 2));
